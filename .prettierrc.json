@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/prettierrc",
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "bracketSameLine": true,
+    "bracketSpacing": true,
+    "printWidth": 80,
+    "tabWidth": 4,
+    "singleAttributePerLine": true,
+    "htmlWhitespaceSensitivity": "ignore",
+    "plugins": [
+        "@prettier/plugin-pug"
+    ]
+}
