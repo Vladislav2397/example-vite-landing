@@ -2,7 +2,7 @@
 nav#mainNav.navbar.navbar-expand-lg.navbar-dark.fixed-top
     .container
         a.navbar-brand(href='#page-top')
-            img(src='/img/navbar-logo.svg', alt='...')
+            img(src='/img/navbar-logo.svg', alt='...', loading='eager', fetchpriority='high')
         button.navbar-toggler(
             type='button',
             data-bs-toggle='collapse',
@@ -60,7 +60,7 @@ mixin portfolioCard(data)
                 .portfolio-hover
                     .portfolio-hover-content
                         i.fas.fa-plus.fa-3x
-                img.img-fluid(src=data.image, alt='...')
+                img.img-fluid(src=data.image, alt='...', loading='lazy')
             .portfolio-caption
                 .portfolio-caption-heading #{ data.title }
                 .portfolio-caption-subheading.text-muted #{ data.subtitle }
@@ -82,7 +82,7 @@ section#portfolio.page-section.bg-light
 mixin timelineItem(data)
     li(class=data.inverted ? 'timeline-inverted' : '')
         .timeline-image
-            img.rounded-circle.img-fluid(src=data.image, alt='...')
+            img.rounded-circle.img-fluid(src=data.image, alt='...', loading='lazy')
         .timeline-panel
             .timeline-heading
                 h4 #{ data.title }
@@ -112,7 +112,7 @@ section#about.page-section
 mixin teamMember(data)
     .col-lg-4
         .team-member
-            img.mx-auto.rounded-circle(src=data.image, alt='...')
+            img.mx-auto.rounded-circle(src=data.image, alt='...', loading='lazy')
             h4 #{ data.name }
             p.text-muted #{ data.role }
             a.btn.btn-dark.btn-social.mx-2(
@@ -149,7 +149,8 @@ mixin client(data)
             img.img-fluid.img-brand.d-block.mx-auto(
                 src=data.image,
                 alt='...',
-                aria-label=data.label)
+                aria-label=data.label,
+                loading='lazy')
 
 .py-5
     .container
@@ -248,7 +249,7 @@ mixin portfolioModal(data)
         .modal-dialog
             .modal-content
                 .close-modal(data-bs-dismiss='modal')
-                    img(src='/img/close-icon.svg', alt='Close modal')
+                    img(src='/img/close-icon.svg', alt='Close modal', loading='eager')
                 .container
                     .row.justify-content-center
                         .col-lg-8
@@ -258,7 +259,8 @@ mixin portfolioModal(data)
                                 p.item-intro.text-muted #{ data.description }
                                 img.img-fluid.d-block.mx-auto(
                                     src=data.image,
-                                    alt='...')
+                                    alt='...',
+                                    loading='lazy')
                                 p
                                     | Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
                                 ul.list-inline

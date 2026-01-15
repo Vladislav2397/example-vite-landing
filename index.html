@@ -12,38 +12,72 @@
             name="author"
             content="" />
         <title>Agency - Start Bootstrap Theme</title>
+
+        <!-- Preconnect для внешних ресурсов -->
+        <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin />
+        <link
+            rel="preconnect"
+            href="https://use.fontawesome.com" />
+        <link
+            rel="preconnect"
+            href="https://cdn.jsdelivr.net" />
+
+        <!-- DNS prefetch для дополнительной оптимизации -->
+        <link
+            rel="dns-prefetch"
+            href="https://fonts.googleapis.com" />
+        <link
+            rel="dns-prefetch"
+            href="https://cdn.jsdelivr.net" />
+
         <!-- Favicon-->
         <link
             rel="icon"
             type="image/x-icon"
             href="/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script
-            src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-            crossorigin="anonymous"></script>
-        <!-- Google fonts-->
+
+        <!-- Google fonts с display=swap для оптимизации загрузки -->
         <link
-            href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-            rel="stylesheet"
-            type="text/css" />
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@400;100;300;700&display=swap"
+            rel="stylesheet" />
+
+        <!-- Preload критического изображения header -->
         <link
-            href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-            rel="stylesheet"
-            type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
+            rel="preload"
+            href="/img/header-bg.jpg"
+            fetchpriority="high"
+            as="image"
+            type="image/jpeg" />
+
+        <!-- Core theme CSS (includes Bootstrap) -->
         <link
             href="./src/styles.scss"
             rel="stylesheet" />
+
+        <!-- Font Awesome загружается асинхронно -->
+        <script
+            src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+            crossorigin="anonymous"
+            defer></script>
     </head>
     <body id="page-top">
         <template
             data-type="pug"
             data-src="./src/index.pug" />
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JS - загружается с defer для неблокирующей загрузки -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            defer></script>
         <!-- Core theme JS-->
         <script
             type="module"
-            src="./src/main.ts"></script>
+            src="./src/main.ts"
+            defer></script>
     </body>
 </html>
