@@ -10,7 +10,5 @@
     "tabWidth": 4,
     "singleAttributePerLine": true,
     "htmlWhitespaceSensitivity": "ignore",
-    "plugins": [
-        "@prettier/plugin-pug"
-    ]
+    "plugins": ["@prettier/plugin-pug"]
 }
