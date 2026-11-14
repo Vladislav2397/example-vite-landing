@@ -7,6 +7,8 @@
 // Scripts
 //
 
+import './styles.scss'
+
 window.addEventListener('DOMContentLoaded', () => {
     // Navbar shrink function
     var navbarShrink = function () {

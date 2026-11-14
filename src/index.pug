@@ -1,8 +1,28 @@
+mixin image(data)
+    - const webpImage = data.src + '.webp'
+    - const jpegImage = data.src
+    - const isPicture = data.src.endsWith('.jpg') || data.src.endsWith('.png')
+
+    if isPicture
+        picture
+            source(src=webpImage, type='image/webp')
+            img(
+                src=jpegImage,
+                alt=data.alt,
+                loading=data.loading,
+                fetchpriority=data.fetchpriority)&attributes(attributes)
+    else
+        img(
+            src=data.src,
+            alt=data.alt,
+            loading=data.loading,
+            fetchpriority=data.fetchpriority)&attributes(attributes)
+
 // Navigation
 nav#mainNav.navbar.navbar-expand-lg.navbar-dark.fixed-top
     .container
         a.navbar-brand(href='#page-top')
-            img(src='/img/navbar-logo.svg', alt='...', loading='eager', fetchpriority='high')
+            +image({ src: images.navbarLogo, alt: '...', loading: 'eager', fetchpriority: 'high' })
         button.navbar-toggler(
             type='button',
             data-bs-toggle='collapse',
@@ -60,7 +80,8 @@ mixin portfolioCard(data)
                 .portfolio-hover
                     .portfolio-hover-content
                         i.fas.fa-plus.fa-3x
-                img.img-fluid(src=data.image, alt='...', loading='lazy')
+                +image({ src: data.image, alt: '...', loading: 'lazy' }).img-fluid
+                //- img.img-fluid(src=data.image, alt='...', loading='lazy')
             .portfolio-caption
                 .portfolio-caption-heading #{ data.title }
                 .portfolio-caption-subheading.text-muted #{ data.subtitle }
@@ -71,18 +92,21 @@ section#portfolio.page-section.bg-light
             h2.section-heading.text-uppercase Portfolio
             h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
         .row
-            +portfolioCard({ modalId: '#portfolioModal1', image: '/img/portfolio/1.jpg', title: 'Threads', subtitle: 'Illustration' })
-            +portfolioCard({ modalId: '#portfolioModal2', image: '/img/portfolio/2.jpg', title: 'Explore', subtitle: 'Graphic Design' })
-            +portfolioCard({ modalId: '#portfolioModal3', image: '/img/portfolio/3.jpg', title: 'Finish', subtitle: 'Identity' })
-            +portfolioCard({ modalId: '#portfolioModal4', image: '/img/portfolio/4.jpg', title: 'Lines', subtitle: 'Branding' })
-            +portfolioCard({ modalId: '#portfolioModal5', image: '/img/portfolio/5.jpg', title: 'Southwest', subtitle: 'Website Design' })
-            +portfolioCard({ modalId: '#portfolioModal6', image: '/img/portfolio/6.jpg', title: 'Window', subtitle: 'Photography' })
+            +portfolioCard({ modalId: '#portfolioModal1', image: images.portfolio[1], title: 'Threads', subtitle: 'Illustration' })
+            +portfolioCard({ modalId: '#portfolioModal2', image: images.portfolio[2], title: 'Explore', subtitle: 'Graphic Design' })
+            +portfolioCard({ modalId: '#portfolioModal3', image: images.portfolio[3], title: 'Finish', subtitle: 'Identity' })
+            +portfolioCard({ modalId: '#portfolioModal4', image: images.portfolio[4], title: 'Lines', subtitle: 'Branding' })
+            +portfolioCard({ modalId: '#portfolioModal5', image: images.portfolio[5], title: 'Southwest', subtitle: 'Website Design' })
+            +portfolioCard({ modalId: '#portfolioModal6', image: images.portfolio[6], title: 'Window', subtitle: 'Photography' })
 
 // About
 mixin timelineItem(data)
     li(class=data.inverted ? 'timeline-inverted' : '')
         .timeline-image
-            img.rounded-circle.img-fluid(src=data.image, alt='...', loading='lazy')
+            img.rounded-circle.img-fluid(
+                src=data.image,
+                alt='...',
+                loading='lazy')
         .timeline-panel
             .timeline-heading
                 h4 #{ data.title }
@@ -95,10 +119,10 @@ section#about.page-section
             h2.section-heading.text-uppercase About
             h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
         ul.timeline
-            +timelineItem({ image: '/img/about/1.jpg', title: '2009-2011', subtitle: 'Our Humble Beginnings', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
-            +timelineItem({ inverted: true, image: '/img/about/2.jpg', title: 'March 2011', subtitle: 'An Agency is Born', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
-            +timelineItem({ image: '/img/about/3.jpg', title: 'December 2015', subtitle: 'Transition to Full Service', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
-            +timelineItem({ inverted: true, image: '/img/about/4.jpg', title: 'July 2020', subtitle: 'Phase Two Expansion', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
+            +timelineItem({ image: images.about[1], title: '2009-2011', subtitle: 'Our Humble Beginnings', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
+            +timelineItem({ inverted: true, image: images.about[2], title: 'March 2011', subtitle: 'An Agency is Born', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
+            +timelineItem({ image: images.about[3], title: 'December 2015', subtitle: 'Transition to Full Service', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
+            +timelineItem({ inverted: true, image: images.about[4], title: 'July 2020', subtitle: 'Phase Two Expansion', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!' })
             li
                 .timeline-image
                     h4
@@ -112,7 +136,10 @@ section#about.page-section
 mixin teamMember(data)
     .col-lg-4
         .team-member
-            img.mx-auto.rounded-circle(src=data.image, alt='...', loading='lazy')
+            img.mx-auto.rounded-circle(
+                src=data.image,
+                alt='...',
+                loading='lazy')
             h4 #{ data.name }
             p.text-muted #{ data.role }
             a.btn.btn-dark.btn-social.mx-2(
@@ -134,9 +161,9 @@ section#team.page-section.bg-light
             h2.section-heading.text-uppercase Our Amazing Team
             h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
         .row
-            +teamMember({ name: 'Parveen Anand', role: 'Lead Designer', image: '/img/team/1.jpg' })
-            +teamMember({ name: 'Diana Petersen', role: 'Lead Marketer', image: '/img/team/2.jpg' })
-            +teamMember({ name: 'Larry Parker', role: 'Lead Developer', image: '/img/team/3.jpg' })
+            +teamMember({ name: 'Parveen Anand', role: 'Lead Designer', image: images.team[1] })
+            +teamMember({ name: 'Diana Petersen', role: 'Lead Marketer', image: images.team[2] })
+            +teamMember({ name: 'Larry Parker', role: 'Lead Developer', image: images.team[3] })
         .row
             .col-lg-8.mx-auto.text-center
                 p.large.text-muted
@@ -155,10 +182,10 @@ mixin client(data)
 .py-5
     .container
         .row.align-items-center
-            +client({ image: '/img/logos/microsoft.svg', label: 'Microsoft Logo' })
-            +client({ image: '/img/logos/google.svg', label: 'Google Logo' })
-            +client({ image: '/img/logos/facebook.svg', label: 'Facebook Logo' })
-            +client({ image: '/img/logos/ibm.svg', label: 'IBM Logo' })
+            +client({ image: images.logos.microsoft, label: 'Microsoft Logo' })
+            +client({ image: images.logos.google, label: 'Google Logo' })
+            +client({ image: images.logos.facebook, label: 'Facebook Logo' })
+            +client({ image: images.logos.ibm, label: 'IBM Logo' })
 
 // Contact
 section#contact.page-section
@@ -249,7 +276,10 @@ mixin portfolioModal(data)
         .modal-dialog
             .modal-content
                 .close-modal(data-bs-dismiss='modal')
-                    img(src='/img/close-icon.svg', alt='Close modal', loading='eager')
+                    img(
+                        src=images.closeIcon,
+                        alt='Close modal',
+                        loading='eager')
                 .container
                     .row.justify-content-center
                         .col-lg-8
@@ -277,14 +307,14 @@ mixin portfolioModal(data)
                                     |
                                     | Close Project
 
-+portfolioModal({ id: 'portfolioModal1', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: '/img/portfolio/1.jpg', client: 'Threads', category: 'Illustration' })
++portfolioModal({ id: 'portfolioModal1', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: images.portfolio[1], client: 'Threads', category: 'Illustration' })
 
-+portfolioModal({ id: 'portfolioModal2', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: '/img/portfolio/2.jpg', client: 'Explore', category: 'Graphic Design' })
++portfolioModal({ id: 'portfolioModal2', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: images.portfolio[2], client: 'Explore', category: 'Graphic Design' })
 
-+portfolioModal({ id: 'portfolioModal3', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: '/img/portfolio/3.jpg', client: 'Finish', category: 'Identity' })
++portfolioModal({ id: 'portfolioModal3', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: images.portfolio[3], client: 'Finish', category: 'Identity' })
 
-+portfolioModal({ id: 'portfolioModal4', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: '/img/portfolio/4.jpg', client: 'Lines', category: 'Branding' })
++portfolioModal({ id: 'portfolioModal4', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: images.portfolio[4], client: 'Lines', category: 'Branding' })
 
-+portfolioModal({ id: 'portfolioModal5', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: '/img/portfolio/5.jpg', client: 'Southwest', category: 'Website Design' })
++portfolioModal({ id: 'portfolioModal5', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: images.portfolio[5], client: 'Southwest', category: 'Website Design' })
 
-+portfolioModal({ id: 'portfolioModal6', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: '/img/portfolio/6.jpg', client: 'Window', category: 'Photography' })
++portfolioModal({ id: 'portfolioModal6', title: 'Project Name', description: 'Lorem ipsum dolor sit amet consectetur.', image: images.portfolio[6], client: 'Window', category: 'Photography' })
